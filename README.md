@@ -29,13 +29,13 @@
 
 ### 第二章：核心技能掌握 (45分钟) ⭐
 
-- **AI Agent 基础架构** (10分钟)：理解智能体的核心组件和工作原理
-- **Prompt 工程** (15分钟)：学会设计高效、可复用的提示词
-- **Tools 工具集成** (10分钟)：掌握外部工具和API的集成方法
+- **Prompt 工程** (18分钟)：学会设计高效、可复用的提示词
+- **Tools 工具集成** (12分钟)：掌握外部工具和API的集成方法
+- **模型微调** (8分钟)：OpenAI微调 Supervised fine-tuning (SFT) 和  Reinforcement fine-tuning (RFT)
 - **MCP 服务** (5分钟)：学会扩展 Agent 能力边界
-- **模型微调** (5分钟)：OpenAI微调 Supervised fine-tuning (SFT) 和  Reinforcement fine-tuning (RFT)
+- **AI Agent 基础架构** (2分钟)：理解智能体的核心组件和工作原理
 
-## 📚 延伸阅读：了解大语言模型 (课后自学)
+## 📚 延伸阅读：了解大语言模型
 
 #### 预训练 (Pretraining)
 - **数据与分词**：大规模文本数据处理，分词器设计原理
