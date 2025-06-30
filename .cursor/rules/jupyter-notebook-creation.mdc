@@ -1,0 +1,134 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI Agent Training Jupyter Notebook Creation Rules
+
+## Project Context
+This is an AI Agent training project focused on core skills development. The main training content is outlined in [README.md](mdc:README.md) with specific focus on Chapter 2: Core Skills Mastery (45 minutes).
+
+## Existing Structure
+- Main project documentation: [README.md](mdc:README.md)
+- Preparation schedule: [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
+- Content outline: [core_skills_outline.md](mdc:core_skills_outline.md)
+- Example notebook: [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
+
+## Jupyter Notebook Creation Guidelines
+
+### 1. Notebook Structure Template
+When creating new Jupyter notebooks for this project, follow this structure:
+
+```json
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# [Topic Name] 基础教程\n\n## 学习目标\n* 理解 [concept 1]\n* 掌握 [skill 1]\n* 能够 [application 1]"
+      ]
+    }
+  ]
+}
+```
+
+### 2. Content Organization (45-minute structure)
+- **前言** (2-3 minutes): Learning objectives and overview
+- **核心概念** (concept explanation with examples)
+- **实践示例** (hands-on code examples)
+- **演示代码** (working demonstrations)
+- **总结** (key takeaways)
+
+### 3. Code Cell Standards
+- Always include proper imports at the beginning
+- Use descriptive variable names in Chinese context
+- Include error handling for API calls
+- Add comments in Chinese for clarity
+- Test examples should be runnable
+
+### 4. Required Dependencies
+Common dependencies for AI Agent notebooks:
+```python
+%pip install anthropic openai python-dotenv requests --quiet
+import anthropic
+import openai
+import os
+from dotenv import load_dotenv
+```
+
+### 5. API Configuration Pattern
+```python
+load_dotenv()
+client = anthropic.Anthropic(
+    api_key=os.getenv("ANTHROPIC_API_KEY"),
+    http_client=httpx.Client(proxy="http://127.0.0.1:7890/")
+)
+```
+
+### 6. Five Core Modules Structure
+Based on [core_skills_outline.md](mdc:core_skills_outline.md), notebooks should cover:
+
+1. **Prompt 工程** (18 min)
+   - TACOS framework (Task, Audience, Context, Output, Style)
+   - Three-stage iteration examples
+   - Working code demonstrations
+
+2. **Tools 工具集成** (12 min)
+   - Tool calling workflow
+   - REST API integration examples
+   - Error handling and retry strategies
+
+3. **模型微调** (8 min)
+   - SFT vs RFT comparison
+   - Minimal code examples
+   - Evaluation best practices
+
+4. **MCP 服务** (5 min)
+   - MCP definition and value
+   - Capability extension examples
+
+5. **AI Agent 基础架构** (2 min)
+   - Five core components
+   - Mermaid architecture diagrams
+
+### 7. Markdown Cell Formatting
+- Use Chinese headers with English technical terms in parentheses
+- Include time estimates for each section
+- Use bullet points for learning objectives
+- Include diagrams using Mermaid when appropriate
+
+### 8. Interactive Elements
+- Use progress indicators (⭐ for important sections)
+- Focus on clear explanations and working examples
+- Provide step-by-step demonstrations
+
+### 9. File Naming Convention
+- Use descriptive Chinese names: `02_核心技能掌握.ipynb`
+- Include chapter/section numbers
+- Store in appropriate subdirectories
+
+### 10. Quality Checklist
+Before finalizing any notebook:
+- [ ] All code cells run without errors
+- [ ] API keys are loaded from environment variables
+- [ ] Chinese explanations are clear and accurate
+- [ ] Examples are relevant to AI Agent development
+- [ ] Time estimates match content volume
+- [ ] Working demonstrations are included
+- [ ] Error handling is implemented
+
+## Integration with Existing Content
+When creating notebooks, reference and build upon:
+- Training schedule from [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
+- Content structure from [core_skills_outline.md](mdc:core_skills_outline.md)
+- Code patterns from [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
+
+## Best Practices
+- Keep each section focused and time-bounded
+- Provide both theoretical explanation and practical examples
+- Include real-world use cases relevant to AI Agent development
+- Ensure all external dependencies are clearly documented
+- Test all code examples before finalizing
+- Include proper error handling for network requests and API calls
+
