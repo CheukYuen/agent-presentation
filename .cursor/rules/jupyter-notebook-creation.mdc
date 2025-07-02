@@ -125,25 +125,33 @@ Based on [core_skills_outline.md](mdc:core_skills_outline.md), notebooks should 
    - Five core components
    - Mermaid architecture diagrams
 
-### 7. Teaching Examples - Banking Industry Focus
-All teaching examples and case studies MUST be centered around banking and financial services:
+### 7. Teaching Examples - 资讯摘要与交易趋势专项要求
+**严格遵循** [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc) 中的规定：
 
-#### Preferred Banking Scenarios:
-- **智能客服**: 银行客户咨询、产品推荐、账户查询
-- **投资分析**: 市场报告生成、投资建议、风险评估
-- **合规检查**: 交易监控、反洗钱、合规报告
-- **风险管理**: 市场风险预警、操作风险识别
-- **理财服务**: 个人理财规划、产品匹配推荐
+#### 🎯 核心聚焦场景（100%必须）
+所有教学代码示例必须**严格限定**在以下两个场景：
+1. **资讯摘要** (Financial News Analysis & Summarization)
+2. **交易趋势** (Trading Trends Analysis)
 
-#### Banking Data Examples:
-- 客户交易记录分析
+#### 📊 资讯摘要必备元素
+- 财经新闻智能摘要与分析
+- 研报要点自动提取
+- 央行政策文件解读
+- 市场舆情监控与预警
+
+#### 📈 交易趋势必备元素
+- 股票/外汇/期货价格走势分析
+- 技术指标智能计算(RSI、MACD、KDJ)
+- 交易信号生成与风险评估
 - 投资组合优化建议
-- 银行产品销售数据
-- 市场趋势和金融新闻分析
-- 客户服务质量评估
 
-#### Compliance Requirements in Examples:
-- 所有分析输出必须包含"仅供参考，不构成投资建议"免责声明
+#### ⚠️ 严格禁止的示例类型
+- 非金融行业案例(电商、教育、医疗等)
+- 通用AI对话示例(天气、常识问答)
+- 抽象技术演示(无实际业务价值)
+
+#### ✅ 合规要求
+- 所有投资分析必须包含"仅供参考，不构成投资建议"免责声明
 - 强调AI仅作为"意图识别"和"参数收集"工具
 - 明确所有核心业务操作需后端系统严格校验
 - 体现数据安全和隐私保护要求
@@ -170,29 +178,34 @@ Before finalizing any notebook:
 - [ ] All code cells run without errors
 - [ ] API keys are loaded from environment variables
 - [ ] Chinese explanations are clear and accurate
-- [ ] Examples are relevant to banking/financial AI Agent development
+- [ ] **示例100%聚焦于资讯摘要或交易趋势场景**
+- [ ] **使用真实金融数据格式和结构**
 - [ ] Time estimates match content volume
 - [ ] Working demonstrations are included
 - [ ] Error handling is implemented
 - [ ] **All Claude API calls use streaming output**
-- [ ] **All examples are banking/finance industry focused**
+- [ ] **严格禁止非金融行业案例和通用AI示例**
 - [ ] **Compliance disclaimers are included where appropriate**
+- [ ] **每个示例都从银行业务实际需求出发**
 
 ## Integration with Existing Content
 When creating notebooks, reference and build upon:
 - Training schedule from [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
 - Content structure from [core_skills_outline.md](mdc:core_skills_outline.md)
 - Code patterns from [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
-- Banking best practices from banking industry cursor rules
+- **教学示例专项要求 from [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc)**
+- Banking best practices from [bank-ai-best-practices.mdc](mdc:bank-ai-best-practices.mdc)
 
 ## Best Practices
 - Keep each section focused and time-bounded
 - Provide both theoretical explanation and practical examples
-- Include real-world banking use cases relevant to AI Agent development
+- **所有示例必须严格限定于资讯摘要和交易趋势两大场景**
+- **使用真实的金融数据格式，避免抽象或虚构数据**
 - Ensure all external dependencies are clearly documented
 - Test all code examples before finalizing
 - Include proper error handling for network requests and API calls
 - **Always use streaming output for better teaching demonstration**
-- **Focus all examples on banking and financial services scenarios**
+- **每个代码示例都要体现银行实际业务价值**
 - **Maintain banking compliance awareness in all content**
+- **参考 [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc) 确保示例质量**
 
