@@ -1,8 +1,9 @@
-# AI Agent 基础培训
+# AI Agent 入门基础培训
 
 ## 📋 项目概述
 
-本项目是一个专为初学者设计的AI Agent 基础培训课程，基于 Anthropic 与 OpenAI 模型， 帮助零基础学员快快速掌握智能体开发与微调的核心技能。项目包含完整的 Agent 架构设计、Prompt 工程实践、工具集成、MCP 服务及模型微调等关键内容。
+本项目是一个专为初学者设计的 AI Agent 基础培训课程，基于 Anthropic Claude 与 OpenAI 平台进行实战教学。
+通过循序渐进的学习方式，帮助零基础学员快速掌握智能体开发的核心概念和实用技能，包括 Prompt 工程、工具集成、MCP 服务使用以及模型微调等关键技术。
 
 ## 📖 培训内容
 
@@ -76,12 +77,12 @@
 ## 📚 学习资源
 
 ### 核心参考资料
-- Andrej Karpathy：[《深入了解ChatGPT之类的大语言模型|Deep Dive into LLMs like ChatGPT》](https://www.youtube.com/watch?v=zjkBMFhNj_g)
-- Andrej Karpathy：[《Software Is Changing》](https://www.ycombinator.com/library/MW-andrej-karpathy-software-is-changing-again)
+- Andrej Karpathy：[《深入了解ChatGPT之类的大语言模型|Deep Dive into LLMs like ChatGPT》]
+- Andrej Karpathy：[《Software Is Changing》]
 
 ### 官方文档
-- [Anthropic Claude API](https://docs.anthropic.com/)
-- [OpenAI API](https://platform.openai.com/docs)
+- [Anthropic Claude API]
+- [OpenAI API]
 
 ---
 
