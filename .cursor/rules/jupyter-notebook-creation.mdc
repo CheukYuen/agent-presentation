@@ -46,6 +46,7 @@ When creating new Jupyter notebooks for this project, follow this structure:
 - Include error handling for API calls
 - Add comments in Chinese for clarity
 - Test examples should be runnable
+- **MUST use streaming output for all Claude API calls**
 
 ### 4. Required Dependencies
 Common dependencies for AI Agent notebooks:
@@ -57,13 +58,45 @@ import os
 from dotenv import load_dotenv
 ```
 
-### 5. API Configuration Pattern
+### 5. API Configuration Pattern - STREAMING REQUIRED
 ```python
 load_dotenv()
 client = anthropic.Anthropic(
     api_key=os.getenv("ANTHROPIC_API_KEY"),
     http_client=httpx.Client(proxy="http://127.0.0.1:7890/")
 )
+
+# 定义辅助函数用于调用Claude API（流式输出）
+def call_claude(prompt, system="", max_tokens=1000, temperature=0.7):
+    """
+    调用Claude API的辅助函数（流式输出）
+    
+    参数:
+    - prompt: 用户输入的提示词
+    - system: 系统提示词
+    - max_tokens: 最大token数
+    - temperature: 随机性参数（0-1，越高越随机）
+    """
+    full_response = ""
+    
+    with client.messages.stream(
+        model="claude-4-sonnet-20250514",
+        max_tokens=max_tokens,
+        temperature=temperature,
+        system=system,
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    ) as stream:
+        for text in stream.text_stream:
+            print(text, end="", flush=True)
+            full_response += text
+    
+    print()  # 添加换行
+    return full_response
 ```
 
 ### 6. Five Core Modules Structure
@@ -92,43 +125,74 @@ Based on [core_skills_outline.md](mdc:core_skills_outline.md), notebooks should 
    - Five core components
    - Mermaid architecture diagrams
 
-### 7. Markdown Cell Formatting
+### 7. Teaching Examples - Banking Industry Focus
+All teaching examples and case studies MUST be centered around banking and financial services:
+
+#### Preferred Banking Scenarios:
+- **智能客服**: 银行客户咨询、产品推荐、账户查询
+- **投资分析**: 市场报告生成、投资建议、风险评估
+- **合规检查**: 交易监控、反洗钱、合规报告
+- **风险管理**: 市场风险预警、操作风险识别
+- **理财服务**: 个人理财规划、产品匹配推荐
+
+#### Banking Data Examples:
+- 客户交易记录分析
+- 投资组合优化建议
+- 银行产品销售数据
+- 市场趋势和金融新闻分析
+- 客户服务质量评估
+
+#### Compliance Requirements in Examples:
+- 所有分析输出必须包含"仅供参考，不构成投资建议"免责声明
+- 强调AI仅作为"意图识别"和"参数收集"工具
+- 明确所有核心业务操作需后端系统严格校验
+- 体现数据安全和隐私保护要求
+
+### 8. Markdown Cell Formatting
 - Use Chinese headers with English technical terms in parentheses
 - Include time estimates for each section
 - Use bullet points for learning objectives
 - Include diagrams using Mermaid when appropriate
 
-### 8. Interactive Elements
+### 9. Interactive Elements
 - Use progress indicators (⭐ for important sections)
 - Focus on clear explanations and working examples
 - Provide step-by-step demonstrations
+- **All Claude API calls must use streaming output for better user experience**
 
-### 9. File Naming Convention
+### 10. File Naming Convention
 - Use descriptive Chinese names: `02_核心技能掌握.ipynb`
 - Include chapter/section numbers
 - Store in appropriate subdirectories
 
-### 10. Quality Checklist
+### 11. Quality Checklist
 Before finalizing any notebook:
 - [ ] All code cells run without errors
 - [ ] API keys are loaded from environment variables
 - [ ] Chinese explanations are clear and accurate
-- [ ] Examples are relevant to AI Agent development
+- [ ] Examples are relevant to banking/financial AI Agent development
 - [ ] Time estimates match content volume
 - [ ] Working demonstrations are included
 - [ ] Error handling is implemented
+- [ ] **All Claude API calls use streaming output**
+- [ ] **All examples are banking/finance industry focused**
+- [ ] **Compliance disclaimers are included where appropriate**
 
 ## Integration with Existing Content
 When creating notebooks, reference and build upon:
 - Training schedule from [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
 - Content structure from [core_skills_outline.md](mdc:core_skills_outline.md)
 - Code patterns from [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
+- Banking best practices from banking industry cursor rules
 
 ## Best Practices
 - Keep each section focused and time-bounded
 - Provide both theoretical explanation and practical examples
-- Include real-world use cases relevant to AI Agent development
+- Include real-world banking use cases relevant to AI Agent development
 - Ensure all external dependencies are clearly documented
 - Test all code examples before finalizing
 - Include proper error handling for network requests and API calls
+- **Always use streaming output for better teaching demonstration**
+- **Focus all examples on banking and financial services scenarios**
+- **Maintain banking compliance awareness in all content**
 
