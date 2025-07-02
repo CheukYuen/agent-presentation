@@ -133,6 +133,8 @@ Based on [core_skills_outline.md](mdc:core_skills_outline.md), notebooks should 
 1. **资讯摘要** (Financial News Analysis & Summarization)
 2. **交易趋势** (Trading Trends Analysis)
 
+**⚠️ 例外说明：模型微调章节可以使用通用技术示例，不受此限制约束。**
+
 #### 📊 资讯摘要必备元素
 - 财经新闻智能摘要与分析
 - 研报要点自动提取
