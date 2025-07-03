@@ -1,24 +1,42 @@
 ---
-description: 
-globs: 
-alwaysApply: true
+globs: *.ipynb
 ---
-# AI Agent Training Jupyter Notebook Creation Rules
 
-## Project Context
-This is an AI Agent training project focused on core skills development. The main training content is outlined in [README.md](mdc:README.md) with specific focus on Chapter 2: Core Skills Mastery (45 minutes).
+# Jupyter Notebook 创建指南
 
-## Existing Structure
-- Main project documentation: [README.md](mdc:README.md)
-- Preparation schedule: [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
-- Content outline: [core_skills_outline.md](mdc:core_skills_outline.md)
-- Example notebook: [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
+## 🎯 核心要求
 
-## Jupyter Notebook Creation Guidelines
+### 1. 教学示例场景限制
+**100%严格遵循主规则** [ai-agent-training-rules.mdc](mdc:ai-agent-training-rules.mdc) 中的规定：
+- 所有代码示例必须聚焦于**资讯摘要**或**交易趋势**场景
+- 严禁使用非金融行业案例
+- 必须体现银行业务实际价值
 
-### 1. Notebook Structure Template
-When creating new Jupyter notebooks for this project, follow this structure:
+### 2. API调用规范
+**强制要求**使用流式输出：
+```python
+# 必须使用流式输出的Claude API调用
+with client.messages.stream(
+    model="claude-4-sonnet-20250514",
+    max_tokens=max_tokens,
+    temperature=temperature,
+    system=system,
+    messages=[{"role": "user", "content": prompt}]
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)
+        full_response += text
+```
 
+### 3. 金融合规要求
+所有投资分析和建议必须包含免责声明：
+```python
+print("⚠️ 免责声明：以上分析仅供参考，不构成投资建议。投资有风险，决策需谨慎。")
+```
+
+## 📋 Notebook结构模板
+
+### 标准结构
 ```json
 {
   "cells": [
@@ -33,32 +51,26 @@ When creating new Jupyter notebooks for this project, follow this structure:
 }
 ```
 
-### 2. Content Organization (45-minute structure)
-- **前言** (2-3 minutes): Learning objectives and overview
-- **核心概念** (concept explanation with examples)
-- **实践示例** (hands-on code examples)
-- **演示代码** (working demonstrations)
-- **总结** (key takeaways)
+### 内容组织 (45分钟结构)
+- **前言** (2-3 minutes): 学习目标和概览
+- **核心概念** (概念解释和示例)
+- **实践示例** (动手代码示例)
+- **演示代码** (工作演示)
+- **总结** (关键要点)
 
-### 3. Code Cell Standards
-- Always include proper imports at the beginning
-- Use descriptive variable names in Chinese context
-- Include error handling for API calls
-- Add comments in Chinese for clarity
-- Test examples should be runnable
-- **MUST use streaming output for all Claude API calls**
+## 🔧 技术标准
 
-### 4. Required Dependencies
-Common dependencies for AI Agent notebooks:
+### 必需依赖
 ```python
 %pip install anthropic openai python-dotenv requests --quiet
 import anthropic
 import openai
 import os
 from dotenv import load_dotenv
+import httpx
 ```
 
-### 5. API Configuration Pattern - STREAMING REQUIRED
+### API配置模式 - 流式输出必需
 ```python
 load_dotenv()
 client = anthropic.Anthropic(
@@ -99,115 +111,100 @@ def call_claude(prompt, system="", max_tokens=1000, temperature=0.7):
     return full_response
 ```
 
-### 6. Five Core Modules Structure
-Based on [core_skills_outline.md](mdc:core_skills_outline.md), notebooks should cover:
+## 📚 五大核心模块结构
+
+基于 [core_skills_outline.md](mdc:core_skills_outline.md)，notebooks应涵盖：
 
 1. **Prompt 工程** (18 min)
-   - TACOS framework (Task, Audience, Context, Output, Style)
-   - Three-stage iteration examples
-   - Working code demonstrations
+   - TACOS框架 (Task, Audience, Context, Output, Style)
+   - 三阶段迭代示例
+   - 工作代码演示
 
 2. **Tools 工具集成** (12 min)
-   - Tool calling workflow
-   - REST API integration examples
-   - Error handling and retry strategies
+   - 工具调用工作流
+   - REST API集成示例
+   - 错误处理和重试策略
 
 3. **模型微调** (8 min)
-   - SFT vs RFT comparison
-   - Minimal code examples
-   - Evaluation best practices
+   - SFT vs RFT比较
+   - 最小代码示例
+   - 评估最佳实践
 
 4. **MCP 服务** (5 min)
-   - MCP definition and value
-   - Capability extension examples
+   - MCP定义和价值
+   - 能力扩展示例
 
 5. **AI Agent 基础架构** (2 min)
-   - Five core components
-   - Mermaid architecture diagrams
+   - 五大核心组件
+   - Mermaid架构图
 
-### 7. Teaching Examples - 资讯摘要与交易趋势专项要求
-**严格遵循** [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc) 中的规定：
+## 🎯 教学示例要求
 
-#### 🎯 核心聚焦场景（100%必须）
+### 核心聚焦场景（100%必须）
 所有教学代码示例必须**严格限定**在以下两个场景：
 1. **资讯摘要** (Financial News Analysis & Summarization)
 2. **交易趋势** (Trading Trends Analysis)
 
-**⚠️ 例外说明：模型微调章节可以使用通用技术示例，不受此限制约束。**
-
-#### 📊 资讯摘要必备元素
+### 资讯摘要必备元素
 - 财经新闻智能摘要与分析
 - 研报要点自动提取
 - 央行政策文件解读
 - 市场舆情监控与预警
 
-#### 📈 交易趋势必备元素
+### 交易趋势必备元素
 - 股票/外汇/期货价格走势分析
 - 技术指标智能计算(RSI、MACD、KDJ)
 - 交易信号生成与风险评估
 - 投资组合优化建议
 
-#### ⚠️ 严格禁止的示例类型
-- 非金融行业案例(电商、教育、医疗等)
-- 通用AI对话示例(天气、常识问答)
-- 抽象技术演示(无实际业务价值)
-
-#### ✅ 合规要求
+### 合规要求
 - 所有投资分析必须包含"仅供参考，不构成投资建议"免责声明
 - 强调AI仅作为"意图识别"和"参数收集"工具
 - 明确所有核心业务操作需后端系统严格校验
 - 体现数据安全和隐私保护要求
 
-### 8. Markdown Cell Formatting
-- Use Chinese headers with English technical terms in parentheses
-- Include time estimates for each section
-- Use bullet points for learning objectives
-- Include diagrams using Mermaid when appropriate
+## 📝 文件命名和格式
 
-### 9. Interactive Elements
-- Use progress indicators (⭐ for important sections)
-- Focus on clear explanations and working examples
-- Provide step-by-step demonstrations
-- **All Claude API calls must use streaming output for better user experience**
+### 命名约定
+- 使用中文描述性名称：`02_Prompt工程基础教程.ipynb`
+- 包含章节/序号：`01_`, `02_`, `03_` 等
+- 存放在对应的主题目录中
 
-### 10. File Naming Convention
-- Use descriptive Chinese names: `02_核心技能掌握.ipynb`
-- Include chapter/section numbers
-- Store in appropriate subdirectories
+### Markdown单元格格式
+- 使用中文标题，英文技术术语用括号
+- 包含每个部分的时间估计
+- 学习目标使用项目符号
+- 适当时包含Mermaid图表
 
-### 11. Quality Checklist
-Before finalizing any notebook:
-- [ ] All code cells run without errors
-- [ ] API keys are loaded from environment variables
-- [ ] Chinese explanations are clear and accurate
+### 交互元素
+- 使用进度指示器（⭐ 表示重要部分）
+- 专注于清晰的解释和工作示例
+- 提供分步演示
+- **所有Claude API调用必须使用流式输出以获得更好的用户体验**
+
+## ✅ 质量检查清单
+
+在完成任何notebook之前：
+- [ ] 所有代码单元都运行无错误
+- [ ] API密钥从环境变量加载
+- [ ] 中文解释清晰准确
 - [ ] **示例100%聚焦于资讯摘要或交易趋势场景**
 - [ ] **使用真实金融数据格式和结构**
-- [ ] Time estimates match content volume
-- [ ] Working demonstrations are included
-- [ ] Error handling is implemented
-- [ ] **All Claude API calls use streaming output**
+- [ ] 时间估计与内容量匹配
+- [ ] 包含工作演示
+- [ ] 实现错误处理
+- [ ] **所有Claude API调用使用流式输出**
 - [ ] **严格禁止非金融行业案例和通用AI示例**
-- [ ] **Compliance disclaimers are included where appropriate**
+- [ ] **适当时包含合规免责声明**
 - [ ] **每个示例都从银行业务实际需求出发**
 
-## Integration with Existing Content
-When creating notebooks, reference and build upon:
-- Training schedule from [prep_schedule_ch2_3days.md](mdc:prep_schedule_ch2_3days.md)
-- Content structure from [core_skills_outline.md](mdc:core_skills_outline.md)
-- Code patterns from [tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
-- **教学示例专项要求 from [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc)**
-- Banking best practices from [bank-ai-best-practices.mdc](mdc:bank-ai-best-practices.mdc)
+## 🔗 相关文件引用
+- 主规则：[ai-agent-training-rules.mdc](mdc:ai-agent-training-rules.mdc)
+- 项目总览：[README.md](mdc:README.md)
+- 核心技能大纲：[core_skills_outline.md](mdc:core_skills_outline.md)
+- 现有工具示例：[tool_use/01_工具使用.ipynb](mdc:tool_use/01_工具使用.ipynb)
 
-## Best Practices
-- Keep each section focused and time-bounded
-- Provide both theoretical explanation and practical examples
-- **所有示例必须严格限定于资讯摘要和交易趋势两大场景**
-- **使用真实的金融数据格式，避免抽象或虚构数据**
-- Ensure all external dependencies are clearly documented
-- Test all code examples before finalizing
-- Include proper error handling for network requests and API calls
-- **Always use streaming output for better teaching demonstration**
-- **每个代码示例都要体现银行实际业务价值**
-- **Maintain banking compliance awareness in all content**
-- **参考 [teaching-examples-focus.mdc](mdc:teaching-examples-focus.mdc) 确保示例质量**
-
+## 📋 支持文档
+- [prompt/prompt_outline.md](mdc:prompt/prompt_outline.md) - Prompt工程大纲
+- [fineture/fineture-outline.md](mdc:fineture/fineture-outline.md) - 微调大纲
+- [prompt/structured_outputs.md](mdc:prompt/structured_outputs.md) - 结构化输出指南
