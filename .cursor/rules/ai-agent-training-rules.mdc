@@ -1,3 +1,8 @@
+---
+alwaysApply: true
+description: "AI Agent培训项目核心规则 - 银行业务场景专用规范"
+---
+
 # AI Agent 培训项目核心规则
 
 ## 项目概览
@@ -116,7 +121,3 @@ trading_sample = {
 
 ## 💡 总结
 通过严格遵循银行业务合规要求和"资讯摘要 + 交易趋势"的教学示例规范，确保所有培训内容都具有高度的实用性和针对性，让银行从业人员能够立即将所学知识应用到实际工作中，同时保持"安全、合规、可控"的原则。
-description:
-globs:
-alwaysApply: false
----
