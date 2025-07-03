@@ -51,7 +51,7 @@ def stream_openai_chat(prompt, model="gpt-4.1-nano-2025-04-14", system_prompt=""
 if __name__ == "__main__":
     print("\n=== OpenAI 流式输出演示 ===")
     result = stream_openai_chat(
-        prompt="请用一句话总结2024年中国货币政策的主要变化。",
+        prompt="永赢医药健康A 是什么类型基金？",
         system_prompt="你是银行金融分析助手，所有输出仅供参考，不构成投资建议。",
         max_tokens=200,
         temperature=0.3
