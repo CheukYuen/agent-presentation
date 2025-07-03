@@ -175,3 +175,31 @@ data7 = [{"system": "从网页基金数据中提取 QDII 基金，需包含基�
 {"基金代码+简称": "460010 华泰柏瑞亚洲领导企业混合(QDII)", "基金类型": "QDII"},
 {"基金代码+简称": "002423 广发道琼斯石油指数(QDII-LOF)人民币C", "基金类型": "QDII"}
 ]}]
+
+# === 生成 OpenAI SFT 微调用 JSONL 文件 ===
+import json
+
+all_funds = []
+
+# 股票型
+for item in data_list1:
+    all_funds.append({
+        "system": "请根据基金名称判断其官方类型，仅输出类别（如：股票型/债券型/混合型/指数型/QDII/ETF/LOF），并加上*仅供参考，不构成投资建议*",
+        "user": item["基金代码+简称"],
+        "assistant": f'{item["基金类型"]} *仅供参考，不构成投资建议*'
+    })
+
+# 其他类别（data_list2 ~ data7）
+for data_group in [data_list2, data3, data4, data5, data6, data7]:
+    for group in data_group:
+        for item in group["assistant"]:
+            all_funds.append({
+                "system": "请根据基金名称判断其官方类型，仅输出类别（如：股票型/债券型/混合型/指数型/QDII/ETF/LOF），并加上*仅供参考，不构成投资建议*",
+                "user": item["基金代码+简称"],
+                "assistant": f'{item["基金类型"]} *仅供参考，不构成投资建议*'
+            })
+
+# 写入 JSONL 文件
+with open("fund_type_training.jsonl", "w", encoding="utf-8") as f:
+    for entry in all_funds:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
