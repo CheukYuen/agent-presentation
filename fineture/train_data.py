@@ -203,3 +203,38 @@ for data_group in [data_list2, data3, data4, data5, data6, data7]:
 with open("fund_type_training.jsonl", "w", encoding="utf-8") as f:
     for entry in all_funds:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+# === 拆分训练集和测试集 ===
+import random
+from collections import defaultdict
+
+# 读取原始数据
+with open("fund_type_training.jsonl", "r", encoding="utf-8") as f:
+    all_data = [json.loads(line) for line in f if line.strip()]
+
+# 按类别分组
+grouped = defaultdict(list)
+for entry in all_data:
+    # 类别在 assistant 字段第一个空格前
+    fund_type = entry["assistant"].split()[0]
+    grouped[fund_type].append(entry)
+
+train_set, test_set = [], []
+random.seed(42)
+for fund_type, items in grouped.items():
+    if len(items) <= 3:
+        test_items = items
+        train_items = []
+    else:
+        test_items = random.sample(items, 3)
+        train_items = [x for x in items if x not in test_items]
+    test_set.extend(test_items)
+    train_set.extend(train_items)
+
+# 写入训练集和测试集
+with open("fund_type_train.jsonl", "w", encoding="utf-8") as f:
+    for entry in train_set:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+with open("fund_type_test.jsonl", "w", encoding="utf-8") as f:
+    for entry in test_set:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")

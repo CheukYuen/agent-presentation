@@ -22,6 +22,10 @@
 * 训练/测试拆分：脚本默认每类随机抽取 13 条（10 训练 + 3 测试），固定 `random_state=42`，输出 `fund_type_training.jsonl` 与 `fund_type_test.jsonl`
 * 脚本源码：`scripts/make_dataset.py`（可提前运行并缓存结果，确保课堂不等待）
 * 合规要求：assistant 仅输出类别+*仅供参考，不构成投资建议*
+* **数据文件路径**：所有数据文件均位于 `fineture/` 目录下：
+  - 原始全量数据：`fineture/fund_type_training.jsonl`
+  - 训练集：`fineture/fund_type_train.jsonl`
+  - 测试集：`fineture/fund_type_test.jsonl`
 
 ---
 
@@ -61,8 +65,8 @@
 1. 生成训练数据
    * 运行 `python make_dataset.py`，产生 `fund_type_training.jsonl`
 2. 上传文件 & 创建微调任务
-   * `openai files create --purpose fine-tune --file fund_type_training.jsonl`
-   * `openai fine_tuning.jobs.create --training_file <FILE_ID> --model gpt-3.5-turbo-0125 --suffix fund-type-v1`
+   * `openai files create --purpose fine-tune --file fineture/fund_type_train.jsonl`
+   * `openai fine_tuning.jobs.create --training_file <FILE_ID> --model gpt-4.1-nano-2025-04-14 --suffix fund-type-v1`
 3. 监控日志 & 成本评估
    * `openai fine_tuning.jobs.follow <JOB_ID>` 查看进度与 token 消耗
 4. API 测试对比
@@ -70,14 +74,67 @@
 
 ---
 
-## 4. 效果评估与合规要点（3 min）
+## 4. 自动化评测（Evals）（2 min）
+* 推荐使用 OpenAI 官方 Evals Python 框架，对微调后的 gpt-4.1-nano-2025-04-14 模型进行自动化评测。
+* 评测数据建议使用 `fineture/fund_type_test.jsonl`，可自动计算准确率等关键指标。
+* 官方推荐通过 Python API 进行评测，示例代码如下：
+
+```python
+import openai
+import json
+
+def evaluate_model(model_name, test_file):
+    with open(test_file, 'r', encoding='utf-8') as f:
+        test_data = [json.loads(line) for line in f if line.strip()]
+    correct = 0
+    for sample in test_data:
+        response = openai.ChatCompletion.create(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": sample["system"]},
+                {"role": "user", "content": sample["user"]}
+            ],
+            temperature=0
+        )
+        output = response["choices"][0]["message"]["content"].strip()
+        if output == sample["assistant"]:
+            correct += 1
+    accuracy = correct / len(test_data)
+    print(f"{model_name} Accuracy: {accuracy:.2%}")
+
+# 对比两个模型
+evaluate_model("gpt-4.1-nano-2025-04-14", "fineture/fund_type_test.jsonl")  # 基线
+# 替换为你的微调模型名称
+# evaluate_model("ft:gpt-4.1-nano-2025-04-14:your-org::xxxxxx", "fineture/fund_type_test.jsonl")  # 微调后
+```
+- 你可以根据业务需求自定义评测指标和输出格式。
+- 推荐用表格或百分比直观展示提升：
+
+```
+| 模型名称                | 准确率   |
+|------------------------|---------|
+| gpt-4.1-nano-2025-04-14|  82.1%  |
+| 微调后模型              |  97.4%  |
+| 提升                    | +15.3%  |
+```
+- 评测结果可用于模型效果量化、合规归档和持续优化。
+
+* **最佳实践**：
+  - 训练、评测数据分离，保证评测客观性。
+  - 评测时 temperature=0，保证输出稳定。
+  - 评测结果归档，便于后续模型对比和合规审计。
+  - 评测流程自动化，减少人工干预。
+
+---
+
+## 5. 效果评估与合规要点（3 min）
 * 分类准确率提升（案例对比）
 * 合规输出：仅标签+声明，杜绝解释性内容
 * 数据安全与日志审计
 
 ---
 
-## 5. 总结与提问（1 min）
+## 6. 总结与提问（1 min）
 * SFT 快速落地流程回顾
 * 推荐阅读与后续进阶方向
 
