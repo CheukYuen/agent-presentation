@@ -1,7 +1,5 @@
 
-人工智能时代的软件
-
-# Part1:  人工智能时代的软件
+# Part1:  人工智能时代的程序员
 
 https://by-andrej-karpathy-7z87dvh.gamma.site/ycaistartup2025
 
@@ -13,19 +11,26 @@ https://by-andrej-karpathy-7z87dvh.gamma.site/ycaistartup2025
 - **Google NotebookLM**：智能笔记系统
 - **Anthropic Artifacts**：可执行内容生成
 BOA
-robinhood
 
-# 设立自己的评估体系， 行业落地
-红杉中国在2025年5月26日发布的论文《xbench: tracking agents productivity scaling with profession-aligned real-world evaluations》介绍了针对AI实际产业落地能力评估的benchmark——xbench。以下是关于xbench的具体介绍：
-评估体系
-双轨评估体系：创新性地将评测任务分为两条互补的主线。第一，评估AI系统的能力上限与技术边界；第二，量化AI系统在真实场景的效用价值（utility value）。后者需要动态对齐现实世界的应用需求，基于实际工作流程和具体社会角色，为各垂直领域构建具有明确业务价值的测评标准。
-长青评估机制：通过持续维护并动态更新测试内容，以确保时效性和相关性。定期测评市场主流agent产品，跟踪模型能力演进，捕捉agent产品迭代过程中的关键突破，进而预测下一个agent应用的技术-市场契合点（tmf，tech-market fit）。
-评估方法
-真实业务需求驱动任务设计：任务直接来源于行业专家的真实业务需求。例如，在招聘评估中，agent需要根据职位描述（jd）完成企业映射（company mapping）、人才信息补全（people-to-info）和信息到人才的匹配（info-to-people）等任务；营销评估则要求agent根据广告主的产品信息和推广需求，筛选出合适的网红。
-专业化评分标准：采用基于大语言模型（llm）的评分机制（llm-as-a-judge），结合行业专家制定的评分细则，对agent的输出进行1-5分的评分。例如，在招聘任务中，评分标准包括覆盖率、幻觉检测、信息质量等。
-技术-市场契合度（tmf）分析：通过分析agent的性能与成本的关系，预测其技术-市场契合度（tmf）。将市场接受曲线（基于任务价值和成本）和技术可行性曲线（基于agent性能）结合，找到两者的交集，量化agent的单位任务价值。
-动态评估与xbench-index：引入xbench-index，通过项目反应理论估算agent的能力值。这种方法能够从不完整的评分矩阵中提取能力主成分，跟踪agent在不同时间点的能力增长趋势。
-评估结果
-领先agent的表现：在招聘和营销基准测试中，o3以78.5和50.8的平均分位居榜首，显示出其在职业化任务中的强大能力。
-技术并非唯一：模型规模更大的agent（如gemini-2.5-pro）并不一定表现优于较小的模型（如gemini-2.5-flash），表明搜索能力和任务适配性更为关键。
-幻觉问题需警惕：某些agent（如perplexity-research）在扩展研究过程中可能引入更多幻觉，影响其在招聘任务中的表现。
+
+
+## robinhood
+
+### Robinhood Strategies
+Robinhood Strategies is a cutting edge wealth management service that gives you expert financial advice and the knowledge to effectively plan for your future. Robinhood Strategies includes financial advice for everyone, offering:  
+
+A low .25% annual management fee for all customers with a yearly cap of only $250 for Robinhood Gold members. That means free management for Gold members on every dollar over $100k and an effective management fee of 0.1% for portfolios with $250k or 0.05% for those with $500k. 
+Access to a diversified mix of both single stocks and ETFs based on your risk tolerance, time horizon, and other factors we learn. The portfolios are actively managed to provide access to more opportunities.
+An interactive portfolio that shows performance over time and overall asset allocation, while letting you drill down into individual holdings, top drivers to your returns, and easily set up recurring investments. 
+Timely market and portfolio insights, delivered in-app in writing and via audio recording, to give you the full context behind major market moves and portfolio adjustments. 
+Simulated future returns using Monte Carlo simulations–all right in the app.
+More control, with the freedom to restrict a select number of stocks to help keep your portfolio aligned with your preferences.  
+Tax advantages, by aiming to select tax lots to sell to minimize taxable gains, thoughtfully incorporating external assets transferred in, and incorporating turnover limits for taxable accounts. 
+Help managing gains and losses. As the year ends, we’ll total your gains and losses so you can choose to harvest any losses.
+Managed individual and retirement accounts with support for joint accounts coming soon.
+
+### Robinhood Cortex
+This is just the beginning of how we’ll use artificial intelligence to help power your investing experience at Robinhood. At launch, Robinhood Cortex is designed to up-level your trading and investing experience supporting: 
+
+Stock Digests: This helps you answer the age-old question of, “Why is this stock going up or down today?” With Robinhood Cortex, simply go to the stock detail page, and we will quickly generate a short summary of what’s happening in the world to impact that ticker.   
+Trade Builder: It’s a tool designed to simplify the trading process and help you learn about new strategies that align with your goals. For example, it makes the options trading experience more intuitive by helping you translate your beliefs about a stock into a specific options trade and strategy. We’ll use Robinhood Cortex to show you insights about price signals, technicals, market news, analyst reports, and more, and then Trade Builder will screen the market for trades to consider based on your inputs.
