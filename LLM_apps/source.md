@@ -10,11 +10,8 @@ https://by-andrej-karpathy-7z87dvh.gamma.site/ycaistartup2025
 - **OpenAI Deep Research**：深度研究助手
 - **Google NotebookLM**：智能笔记系统
 - **Anthropic Artifacts**：可执行内容生成
-BOA
-
-
-
-## robinhood
+- **BOA Erica**:
+- **Robinhood Cortex**:
 
 ### Robinhood Strategies
 Robinhood Strategies is a cutting edge wealth management service that gives you expert financial advice and the knowledge to effectively plan for your future. Robinhood Strategies includes financial advice for everyone, offering:  

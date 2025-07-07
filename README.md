@@ -81,8 +81,8 @@
 - Andrej Karpathy：[《Software Is Changing》]
 
 ### 官方文档
-- [Anthropic Claude API]
-- [OpenAI API]
+- [Anthropic Claude API](https://docs.anthropic.com/en/api/overview)
+- [OpenAI API](https://platform.openai.com/docs/overview)
 
 ---
 
